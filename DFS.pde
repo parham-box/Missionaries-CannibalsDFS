@@ -185,6 +185,5 @@ void setup() {
   }
   int total = goalIndex+1;
   fill(0);
-  text("Unvisited Nodes: "+(nodes.size()-total), width - 120, height - 40);
   text("Visited Nodes: "+total, width - 120, height - 20);
 }
