@@ -78,8 +78,7 @@ void setup() {
   //RED: Not a valid node
   //BLUE: Previously visited node
   //BLACK: Node with children
-  //GRAY: A node on the answer path
-  //GREEN: Goal node
+  //GREEN: Path node
 
   //helpers to show the search tree coordinates
   int v = 1;
