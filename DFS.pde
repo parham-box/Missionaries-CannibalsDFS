@@ -25,7 +25,7 @@ void setup() {
    2 is already visited nodes
    */
   status.add(0);
-    //loop until the algorithm finds the answer
+  //loop until the algorithm finds the answer
   while (true) {
     //to check if node is already visited
     //if flag is true node has been visited before
@@ -41,7 +41,7 @@ void setup() {
     println("--------");
     print("Current state: ");
     cur.printState();
-        //if current node is goal
+    //if current node is goal
     if (cur.isEqual(goalState)) {
       goalIndex = lastVisited;
       println("GOAL STATE");
@@ -55,15 +55,15 @@ void setup() {
         for (int i = 0; i < nextStates.length; i++) {
           //visit the node
           //add children right after parent node
-          //by adding all of the children of a node after the parent node, it will search the tree DFS. 
+          //by adding all of the children of a node after the parent node, it will search the tree DFS.
           nodes.add(lastVisited+i+1, nextStates[i]);
         }
       } else {
-                //aready visited node
+        //aready visited node
         println("Visited Before");
       }
     } else {
-            //not a valid state
+      //not a valid state
       println("Not a valid state");
     }
     //go to next state
@@ -80,11 +80,11 @@ void setup() {
   //BLACK: Node with children
   //GRAY: A node on the answer path
   //GREEN: Goal node
-  
+
   //helpers to show the search tree coordinates
   int v = 1;
   int y = 0;
-    //an array with id of each nodes parent in the array
+  //an array with id of each nodes parent in the array
   int[] parentNodeNumber = new int[goalIndex+1];
   //root node does not have a parent
   parentNodeNumber[0] = -1;
@@ -92,13 +92,13 @@ void setup() {
   for (int x = 1; x <= goalIndex; x++) {
     boolean flag = false;
     State cur = nodes.get(x);
-        //add state of each node
+    //add state of each node
     for (int i = 0; i < x; i++) {
       if (cur.isEqual(nodes.get(i))) {
         flag = true;
       }
     }
-        //go through all the visited nodes and assign the status
+    //go through all the visited nodes and assign the status
     if (nodes.get(x).isValid()) {
       if (!flag) {
 
@@ -109,7 +109,7 @@ void setup() {
     } else {
       status.add(-1);
     }
-//to find parent index
+    //to find parent index
     for (int k = 0; k < x; k++) {
       if (nodes.get(x).getParent().isEqual(nodes.get(k))) {
         parentNodeNumber[x] = k;
@@ -117,27 +117,27 @@ void setup() {
       }
     }
   }
-    //color of forground is black
+  //color of forground is black
   fill(0);
   ArrayList<Integer> rowIndex = new ArrayList<Integer>();
   for (int i = 0; i <= goalIndex; i++) {
-        //if not inital state
+    //if not inital state
     if (i!=0) {
-            //find rows of the tree base on change in boat side
+      //find rows of the tree base on change in boat side
       if (nodes.get(i).getSide() == nodes.get(i-1).getSide()) {
-                //if items are in the same row
+        //if items are in the same row
         //move items in same row to right everytime
         y++;
       } else {
-                //if item is in a new row
+        //if item is in a new row
         //go down
         v++;
-                //start from the left
+        //start from the left
         y =0;
         rowIndex.add(i);
       }
       int parentIndex = parentNodeNumber[i];
-            //find what number parents is in, in the previous row by subtracting its index from last the last item in previous row
+      //find what number parents is in, in the previous row by subtracting its index from last the last item in previous row
       int li = 0;
       for (int x = 1; x < rowIndex.size(); x++) {
         if (parentIndex < rowIndex.get(x)) {
